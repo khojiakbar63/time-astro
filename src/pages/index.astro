@@ -11,16 +11,77 @@ setInterval(()=>{}, 1000)
 
 
 <BaseLayout>
-
-	<div id="bg-wrapper" class="flex flex-col items-center justify-center h-screen">
-		<div id="oclock-box" class="py-[67px] px-[37px]">
-			<div id="time">-- : -- : --</div>
-		</div>
-	</div>
-
+	<div id="time" class="shadow">-- : -- : --</div>
 </BaseLayout>
 
 <style>
+:root {
+	--gradient-shadow: linear-gradient(
+		45deg,
+		#fb0094,
+		#0000ff,
+		#00ff00,
+		#ffff00,
+		#ff0000,
+		#fb0094,
+		#0000ff,
+		#00ff00,
+		#ffff00,
+		#ff0000
+	);
+}
+body {
+	margin: 0;
+	padding: 0;
+	background: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.shadow {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	color: #fff;
+	text-align: center;
+	font-size: 50px;
+	font-weight: bold;
+	width: 500px !important;
+	height: 250px;
+	background: linear-gradient(0deg, #000, #262626);
+}
+.shadow:before,
+.shadow:after {
+	content: "";
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	background: var(--gradient-shadow);
+	background-size: 400%;
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	z-index: -1;
+	animation: animate 20s linear infinite;
+}
+
+.shadow:after {
+	filter: blur(20px);
+}
+
+@keyframes animate {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 300% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
 	#bg-wrapper {
 		position: relative;
 		background-image: url("../assets/images/mount.jpg");
@@ -38,45 +99,11 @@ setInterval(()=>{}, 1000)
 		background-color: rgba(0, 0, 0, 0.579); /* Adjust the color and opacity as needed */
 		z-index: 1;
 	}
-	#oclock-box{
-		z-index: 999;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 579px;
-		height: 270px;
-		border-image: linear-gradient(to right, #6A38F5 0%, #EA245A 100%) 1;
-  		border-width: 8px;
-		color: #ffffff;
-		font-size: 40px;
-		border-radius: 12px !important;
-		position: relative;
-		outline: 8px solid transparent;
-		border-radius: 12px;
-		position: relative;
-		
-	}
+
 	#time {
 		font-size: 102px;
 		font-weight: 400;
 		width: 100%;
-	}
-	#start-button{
-		z-index: 111;
-		border: 2px solid #6A38F5;
-		background: transparent;
-		color: #fff;
-		margin-top: 30px;
-		font-size: 30px;
-		padding: 14px 40px;
-		border-radius: 10px;
-		transition: .1s ease;
-	}
-	#start-button:hover {
-		border: 2px solid #6b38f5a3;
-	}
-	#start-button:active {
-		border: 2px solid #6b38f5;
 	}
 </style>
 

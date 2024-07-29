@@ -1,0 +1,101 @@
+---
+import BaseLayout from "../layouts/base_layout.astro"
+
+(function (){
+	const h = new Date().getHours()
+	const m = new Date().getMinutes()
+	const s = new Date().getSeconds()
+})()
+setInterval(()=>{}, 1000)
+---
+
+
+<BaseLayout>
+
+	<div id="bg-wrapper" class="flex flex-col items-center justify-center h-screen">
+		<div id="oclock-box" class="py-[67px] px-[37px]">
+			<div id="time">-- : -- : --</div>
+		</div>
+	</div>
+
+</BaseLayout>
+
+<style>
+	#bg-wrapper {
+		position: relative;
+		background-image: url("../assets/images/mount.jpg");
+		background-size: cover;
+    	background-position: center;
+    	height: 100vh; 
+	}
+	#bg-wrapper::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.579); /* Adjust the color and opacity as needed */
+		z-index: 1;
+	}
+	#oclock-box{
+		z-index: 999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 579px;
+		height: 270px;
+		border-image: linear-gradient(to right, #6A38F5 0%, #EA245A 100%) 1;
+  		border-width: 8px;
+		color: #ffffff;
+		font-size: 40px;
+		border-radius: 12px !important;
+		position: relative;
+		outline: 8px solid transparent;
+		border-radius: 12px;
+		position: relative;
+		
+	}
+	#time {
+		font-size: 102px;
+		font-weight: 400;
+		width: 100%;
+	}
+	#start-button{
+		z-index: 111;
+		border: 2px solid #6A38F5;
+		background: transparent;
+		color: #fff;
+		margin-top: 30px;
+		font-size: 30px;
+		padding: 14px 40px;
+		border-radius: 10px;
+		transition: .1s ease;
+	}
+	#start-button:hover {
+		border: 2px solid #6b38f5a3;
+	}
+	#start-button:active {
+		border: 2px solid #6b38f5;
+	}
+</style>
+
+
+
+<script>
+
+	(function (){
+		const updateTime = () => {
+			const now = new Date();
+			const h = String(now.getHours()).padStart(2, '0');
+			const m = String(now.getMinutes()).padStart(2, '0');
+			const s = String(now.getSeconds()).padStart(2, '0');
+			document.getElementById('time').textContent = `${h} : ${m} : ${s}`;
+		};
+	
+		let intervalId;
+		updateTime()
+		intervalId = setInterval(updateTime, 1000);
+		
+	})();
+</script>
